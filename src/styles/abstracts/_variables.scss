@@ -4,3 +4,11 @@ $dark: #292c35;
 $black: #17181d;
 $white: #fefefe;
 $gray: #6c757d;
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
