@@ -1,3 +1,20 @@
+.skip-to-content {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  z-index: 15;
+  background-color: $beige;
+  color: $black;
+  min-height: 44px;
+  min-width: 44px;
+  padding: .75rem;
+  transition: all .2s ease-in-out;
+
+  &:focus {
+    top: 0;
+  }
+}
+
 .container {
   padding: 1.5rem 7.5%;
 }
