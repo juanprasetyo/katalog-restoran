@@ -1,0 +1,90 @@
+$navbar-bg-color: $black;
+$navbar-text-color: $white;
+
+.navbar {
+  @include flex-row(center, center);
+  background-color: $navbar-bg-color;
+  position: relative;
+  padding: 0 .75rem;
+  z-index: 10;
+
+  .navbar-toggle {
+    color: $navbar-text-color;
+    font-size: 2rem;
+    z-index: 10;
+  }
+
+  .navbar-brand {
+    color: $navbar-text-color;
+    flex-grow: 1;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.75rem;
+    z-index: 10;
+  }
+
+  .navbar-nav {
+    @include flex-column(center, start);
+    position: absolute;
+    background-color: $navbar-bg-color;
+    width: 100vw;
+    top: 65px;
+    left: 0;
+    transform: translate(0, -100vh);
+    transition: all 1s ease-in-out;
+    z-index: 5;
+
+    &.show {
+      transform: translate(0, 0) !important;
+      z-index: 10;
+    }
+
+    .nav-link {
+      color: $navbar-text-color;
+      padding: .75rem;
+      position: relative;
+
+      &.active {
+        color: $gold;
+        font-weight: 700;
+      }
+
+      &:hover {
+        color: $gold;
+        opacity: .7;
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 25%;
+          width: 50%;
+          height: 2px;
+          background-color: $white;
+          margin: 2px auto;
+        }
+      }
+    }
+  }
+}
+
+@include media-min-width(md) {
+  .navbar {
+    padding: 0 2.5rem;
+    .navbar-toggle {
+      display: none;
+    }
+    .navbar-brand {
+      flex-grow: 0;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .navbar-nav {
+      position: relative !important;
+      transform: none !important;
+      transition: none !important;
+      top: auto !important;
+      flex-direction: row !important;
+      justify-content: end !important;
+    }
+  }
+}
