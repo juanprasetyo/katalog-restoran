@@ -1,0 +1,30 @@
+@use 'sass:math';
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    width: percentage(math.div($i, 12));
+    padding-left: calc(1.5rem * .5);
+    padding-right: calc(1.5rem * .5);
+    margin: calc(1.5rem * .5) auto;
+  }
+
+  @each $breakpoint, $value in $breakpoints {
+    @media (min-width: $value) {
+      @for $i from 1 through 12 {
+        .col-#{$breakpoint}-#{$i} {
+          width: percentage(math.div($i, 12));
+          padding-left: calc(1.5rem * .5);
+          padding-right: calc(1.5rem * .5);
+          margin: calc(1.5rem * .5) auto;
+        }
+      }
+    }
+  }
+}
