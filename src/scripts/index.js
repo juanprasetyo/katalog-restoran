@@ -1,7 +1,7 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../styles/main.scss';
-import './components/restaurant-list';
+import '../components/restaurant-list';
 
 const navbarToggleElement = document.querySelector('.navbar-toggle');
 const navbarNavElement = document.querySelector('.navbar-nav');
