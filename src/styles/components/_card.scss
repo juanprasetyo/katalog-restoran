@@ -6,6 +6,10 @@
   border-radius: .45rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 
+  &:hover {
+    transform: scale(1.025);
+  }
+
   .label-city {
     position: absolute;
     top: 1.5rem;
