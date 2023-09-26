@@ -3,3 +3,9 @@
     font-size: $size;
   }
 }
+
+@each $name, $size in $font-weight {
+  .fw-#{$name} {
+    font-weight: $size;
+  }
+}
