@@ -1,0 +1,18 @@
+#hero {
+  width: 100vw;
+  height: calc(100vh - 65px);
+  background-image: url('../public/images/heros/hero-image_2.jpg');
+  background-size: cover;
+  background-position: center;
+  
+  h1 {
+    height: 100%;
+    color: $white;
+    backdrop-filter: brightness(50%);
+    -webkit-backdrop-filter: brightness(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+  }
+}
