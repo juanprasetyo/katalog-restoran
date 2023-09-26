@@ -1,0 +1,9 @@
+button {
+  @include button;
+}
+
+.btn {
+  @include button;
+  padding: .75rem 2.5rem;
+  border-radius: 500px;
+}
