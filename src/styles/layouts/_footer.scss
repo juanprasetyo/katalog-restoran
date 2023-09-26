@@ -1,0 +1,16 @@
+footer {
+  @include flex-column(center, center);
+  background-color: $black;
+  color: $white;
+
+  p {
+    margin: .2rem;
+  }
+}
+
+@include media-min-width(md) {
+  footer {
+    @include flex-row(center, center);
+  }
+}
+
