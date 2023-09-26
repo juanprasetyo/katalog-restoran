@@ -9,7 +9,7 @@ class RestaurantList extends HTMLElement {
   render() {
     this.innerHTML = `
       <section class="container">
-        <h2 class="fs-5 fw-bold text-center" tabindex="0">Explore Restoran</h2>
+        <h2 class="fs-5 fs-md-4 fs-lg-3 fw-bold text-center" style="margin-bottom: 1.25rem" tabindex="0">Explore Restoran</h2>
         <div class="row"></div>
       </section>   
     `;
