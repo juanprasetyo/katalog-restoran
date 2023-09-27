@@ -21,6 +21,9 @@ $navbar-text-color: $white;
     text-align: center;
     font-size: 1.75rem;
     z-index: 10;
+    display: inline-block;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .navbar-nav {
