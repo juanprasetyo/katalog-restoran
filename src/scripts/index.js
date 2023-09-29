@@ -10,16 +10,16 @@ const mainElement = document.querySelector('main');
 navbarToggleElement.addEventListener('click', (event) => {
   event.stopPropagation();
   navbarNavElement.classList.toggle('show');
-})
+});
 
 mainElement.addEventListener('click', (event) => {
   event.stopPropagation();
   navbarNavElement.classList.remove('show');
-})
+});
 
 const data = require('../public/data/DATA.json');
-const restaurants = data.restaurants;
 
+const { restaurants } = data;
 
 const restaurantListElement = document.createElement('restaurant-list');
 restaurantListElement.restaurants = restaurants;

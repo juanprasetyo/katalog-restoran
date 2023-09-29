@@ -15,11 +15,11 @@ class RestaurantList extends HTMLElement {
     `;
 
     const listRestoContainer = this.querySelector('div');
-    this._restaurants.forEach(restaurant => {
+    this._restaurants.forEach((restaurant) => {
       const restaurantElement = document.createElement('restaurant-item');
       restaurantElement.restaurant = restaurant;
       listRestoContainer.appendChild(restaurantElement);
-    })
+    });
   }
 }
 

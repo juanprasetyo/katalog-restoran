@@ -1,4 +1,4 @@
-class RestaurantItem extends HTMLElement{
+class RestaurantItem extends HTMLElement {
   set restaurant(restaurant) {
     this._restaurant = restaurant;
     this.render();
