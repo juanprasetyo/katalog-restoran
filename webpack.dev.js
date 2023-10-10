@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common');
@@ -12,7 +13,7 @@ module.exports = merge(common, {
     client: {
       overlay: {
         errors: true,
-        warnings: true,
+        warnings: false,
       },
     },
     compress: true,

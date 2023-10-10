@@ -34,3 +34,9 @@
   justify-content: $justify-content;
   align-items: $align-items;
 }
+
+@mixin skeleton-bg-animation($background) {
+  background: $background;
+  background-size: 200% 100%;
+  animation: loadingSkeleton 1.5s infinite;
+}

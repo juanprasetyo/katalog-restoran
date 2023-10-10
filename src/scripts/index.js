@@ -1,26 +1,28 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../styles/main.scss';
-import './components/restaurant-list';
+import swRegister from './utils/sw-register';
+import App from './views/app';
 
-const navbarToggleElement = document.querySelector('.navbar-toggle');
-const navbarNavElement = document.querySelector('.navbar-nav');
-const mainElement = document.querySelector('main');
+const app = new App({
+  button: document.querySelector('.navbar-toggle'),
+  drawer: document.querySelector('.navbar-nav'),
+  content: document.querySelector('#main'),
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const buttonSkipToContent = document.querySelector('.skip-to-content');
+  buttonSkipToContent.addEventListener('click', (event) => {
+    event.preventDefault();
+    const mainElement = document.querySelector('#main');
+    mainElement.scrollIntoView();
+  });
+});
 
-navbarToggleElement.addEventListener('click', (event) => {
-  event.stopPropagation();
-  navbarNavElement.classList.toggle('show');
-})
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
 
-mainElement.addEventListener('click', (event) => {
-  event.stopPropagation();
-  navbarNavElement.classList.remove('show');
-})
-
-const data = require('../public/data/DATA.json');
-const restaurants = data.restaurants;
-
-
-const restaurantListElement = document.createElement('restaurant-list');
-restaurantListElement.restaurants = restaurants;
-mainElement.appendChild(restaurantListElement);
+window.addEventListener('load', () => {
+  app.renderPage();
+  swRegister();
+});

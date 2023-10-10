@@ -1,4 +1,6 @@
-class RestaurantItem extends HTMLElement{
+import CONFIG from '../globals/config';
+
+class RestaurantItem extends HTMLElement {
   set restaurant(restaurant) {
     this._restaurant = restaurant;
     this.render();
@@ -9,7 +11,10 @@ class RestaurantItem extends HTMLElement{
     this.innerHTML = `
       <article class="card">
         <picture>
-          <img src="${this._restaurant.pictureId}" alt="Restaurant ${this._restaurant.name}" loading="lazy" tabindex="0">
+          <source media="(min-width:576px)" srcset="${CONFIG.BASE_IMAGE_URL}small/${this._restaurant.pictureId}">
+          <source media="(min-width:768px)" srcset="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}">
+          <source media="(min-width:992px)" srcset="${CONFIG.BASE_IMAGE_URL}large/${this._restaurant.pictureId}">
+          <img src="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}" alt="Restaurant ${this._restaurant.name}" loading="lazy" tabindex="0">
         </picture>
         <p class="label-city fw-semi-bold" tabindex="0" aria-label="Tempat di kota ${this._restaurant.city}">${this._restaurant.city}</p>
         <div class="card-body">
@@ -19,7 +24,7 @@ class RestaurantItem extends HTMLElement{
           </p>
           <h3 class="title fs-6" tabindex="0">${this._restaurant.name}</h3>
           <p class="desc fs-8 fs-lg-7" tabindex="0">${this._restaurant.description}</p>
-          <a href="#" class="btn fs-7 fw-semi-bold" tabindex="0">Detail</a>
+          <a href="/#/detail/${this._restaurant.id}" class="btn fs-7 fw-semi-bold" tabindex="0">Detail</a>
         </div>
       </article>
     `;
