@@ -1,0 +1,144 @@
+.list-comment {
+  align-items: stretch;
+  justify-content: start;
+}
+.card-detail {
+  border: 2px solid $gray;
+  border-radius: .75rem;
+  padding: 1.2rem;
+
+  h1 {
+    padding-left: .5rem;
+  }
+
+  picture {
+    order: -1;
+
+    img {
+      width: 100%;
+      border-radius: .75rem;
+    }
+  }
+
+  .list-food, .list-drink {
+    li {
+      text-transform: capitalize;
+    }
+  }
+
+  .list-info-resto {
+    list-style: none;
+
+    li {
+      margin-bottom: .5rem;
+
+      i {
+        color: $gold;
+        margin-right: .5rem;
+      }
+    }
+  }
+
+  .card-comment {
+    @include flex-column(center, center);
+    border: 2px solid $gray;
+    border-radius: .75rem;
+    padding: 1rem;
+    height: 100%;
+
+    .card-comment-profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-comment-body {
+      @include flex-column(center, start);
+      padding: 0;
+
+      .comment-create {
+        @include flex-column(center, center);
+        width: 100%;
+        margin-bottom: .5rem;
+
+        .author {
+          text-transform: capitalize;
+        }
+      }
+
+      .comment {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.form-comment {
+  border: 2px solid $gray;
+  border-radius: .75rem;
+  padding: 1rem;
+  
+  form {
+    @include flex-column(center, start);
+
+    .form-group {
+      @include flex-column(center, start);
+      width: 100%;
+      margin-bottom: .75rem;
+
+      label {
+        padding-left: .5rem;
+        margin-bottom: .35rem;
+        font-weight: bold;
+      }
+
+      input, textarea {
+        height: 50px;
+        width: 100%;
+        border-radius: .75rem;
+        padding: .35rem .5rem;
+        border: 2px solid $gray;
+      }
+
+      textarea {
+        height: 150px;
+      }
+    }
+
+    button {
+      width: 100%;
+      border-radius: 500px;
+      background-color: $gold;
+    }
+  }
+}
+
+@include media-min-width(md) {
+  .card-comment {
+    flex-direction: row !important;
+
+    .card-comment-body {
+      @include flex-column(center, start);
+
+      .comment-create {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+      }
+      .comment {
+        text-align: start !important;
+      }
+    }
+  }
+}
+
+
+@include media-min-width(lg) {
+  .card-detail {
+    height: 100%;
+
+    picture {
+      order: 0;
+    }
+  }
+}

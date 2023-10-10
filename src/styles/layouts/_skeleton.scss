@@ -1,0 +1,225 @@
+.template-skeleton {
+  display: flex;
+  &.hidden {
+    display: none;
+  }
+}
+
+$card-skeleton: (
+  width: 100%,
+  height: 550px,
+  padding: 24px,
+);
+$img-skeleton: (
+  height: 250px,
+  width: 100%,
+  position: 0 0,
+  skeleton: linear-gradient(lightgrey 550px, transparent 0)
+);
+$label-city: (
+  height: 48px,
+  width: 50%,
+  position: 0 24px,
+  skeleton: linear-gradient(white 32px, transparent 0)
+);
+$rating: (
+  height: 32px,
+  width: 25%,
+  position: map-get($card-skeleton, padding) calc(map-get($img-skeleton, height) + map-get($card-skeleton, padding)),
+  skeleton: linear-gradient(lightgrey 32px, transparent 0),
+  last-position-y: calc(map-get($img-skeleton, height) + map-get($card-skeleton, padding) + 32px),
+);
+$title: (
+  height: 32px,
+  width: 50%,
+  position: map-get($card-skeleton, padding) calc(map-get($rating, last-position-y) + 12px),
+  skeleton: linear-gradient(lightgrey 32px, transparent 0),
+  last-position-y: calc(map-get($rating, last-position-y) + 12px + 32px),
+);
+$desc-line: (
+  height: 12px,
+  width: calc(map-get($card-skeleton, width) - calc(map-get($card-skeleton, padding) * 2)),
+  last-width: calc((map-get($card-skeleton, width) - (map-get($card-skeleton, padding) * 2)) / 2),
+  line-1-position: map-get($card-skeleton, padding) calc(map-get($title, last-position-y) + 12px),
+  line-2-position: map-get($card-skeleton, padding) calc(map-get($title, last-position-y) + 26px),
+  line-3-position: map-get($card-skeleton, padding) calc(map-get($title, last-position-y) + 40px),
+  line-4-position: map-get($card-skeleton, padding) calc(map-get($title, last-position-y) + 54px),
+  line-5-position: map-get($card-skeleton, padding) calc(map-get($title, last-position-y) + 68px),
+  line-skeleton: linear-gradient(lightgrey 12px, transparent 0),
+);
+$button: (
+  height: 48px,
+  width: calc(map-get($card-skeleton, width) - calc(map-get($card-skeleton, padding) * 2)),
+  position: map-get($card-skeleton, padding) calc(map-get($card-skeleton, height) - 100px),
+  skeleton: linear-gradient(lightgrey 48px, transparent 0),
+);
+$blur: (
+  width: 200px,
+  size: 200px map-get($card-skeleton, height),
+);
+
+.card-skeleton {
+  width: map-get($card-skeleton, width);
+  height: map-get($card-skeleton, height);
+
+  &:empty::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.1);
+
+    background-image: 
+      linear-gradient(
+        90deg,
+        rgba(lightgrey, 0) 0,
+        rgba(lightgrey, 0.8) 50%,
+        rgba(lightgrey, 0) 100%
+      ),
+      map-get($label-city, skeleton),
+      map-get($rating, skeleton),
+      map-get($title, skeleton),
+      map-get($desc-line, line-skeleton),
+      map-get($desc-line, line-skeleton),
+      map-get($desc-line, line-skeleton),
+      map-get($desc-line, line-skeleton),
+      map-get($desc-line, line-skeleton),
+      map-get($button, skeleton),
+      map-get($img-skeleton, skeleton),
+      map-get($card-skeleton, skeleton);
+
+    background-size: 
+      map-get($blur, size),
+      map-get($label-city, width) map-get($label-city, height),
+      map-get($rating, width) map-get($rating, height),
+      map-get($title, width) map-get($title, height),
+      map-get($desc-line, width) map-get($desc-line, height),
+      map-get($desc-line, width) map-get($desc-line, height),
+      map-get($desc-line, width) map-get($desc-line, height),
+      map-get($desc-line, width) map-get($desc-line, height),
+      map-get($desc-line, last-width) map-get($desc-line, height),
+      map-get($button, width) map-get($button, height),
+      map-get($img-skeleton, width) map-get($img-skeleton, height),
+      100% 100%;
+
+    background-position: 
+      -150% 0,
+      map-get($label-city, position),
+      map-get($rating, position),
+      map-get($title, position),
+      map-get($desc-line, line-1-position),
+      map-get($desc-line, line-2-position),
+      map-get($desc-line, line-3-position),
+      map-get($desc-line, line-4-position),
+      map-get($desc-line, line-5-position),
+      map-get($button, position),
+      map-get($img-skeleton, position),
+      0 0;
+
+    background-repeat: no-repeat;
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position: 
+      350% 0,
+      map-get($label-city, position),
+      map-get($rating, position),
+      map-get($title, position),
+      map-get($desc-line, line-1-position),
+      map-get($desc-line, line-2-position),
+      map-get($desc-line, line-3-position),
+      map-get($desc-line, line-4-position),
+      map-get($desc-line, line-5-position),
+      map-get($button, position),
+      map-get($img-skeleton, position),
+      0 0;
+  }
+}
+
+.card-detail {
+  &.skeleton {
+    @include skeleton-bg-animation(linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%));
+
+    h1 {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      width: 100%;
+      height: 60px;
+    }
+
+    h2 {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      height: 36px;
+    }
+
+    h3 {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      height: 28px;
+      width: 50%;
+    }
+  
+    picture {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      height: 250px;
+    }
+  
+    p {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      height: 100%;
+    }
+
+    .list-food, .list-drink {
+      li {
+        @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+        height: 24px;
+        margin-bottom: .5rem;
+      }
+    }
+
+    .list-info-resto {
+      p {
+        @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+        height: 24px;
+      }
+    }
+  }
+}
+
+.card-comment {
+  &.skeleton {
+    @include skeleton-bg-animation(linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%));
+  
+    .card-comment-profile {
+      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+      width: 44px;
+      height: 44px;
+    }
+  
+    .card-comment-body {
+  
+      .comment-create {
+  
+        .author {
+          @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+          height: 30px;
+          width: 50%;
+        }
+
+        p {
+          @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+          height: 17.5px;
+          width: 75%;
+        }
+      }
+  
+      .comment {
+        @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
+        height: 35px;
+        width: 100%;
+      }
+    }
+  }
+}

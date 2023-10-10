@@ -1,15 +1,18 @@
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
+@import 'abstracts/animations';
 
 @import 'base/reset';
+@import 'base/spacing';
 @import 'base/typhography';
 
 @import 'components/buttons';
 @import 'components/card';
 
-@import 'helper/grids';
-
+@import 'layouts/grids';
 @import 'layouts/navigation';
 @import 'layouts/footer';
+@import 'layouts/skeleton';
 
 @import 'pages/home';
+@import 'pages/detail';
