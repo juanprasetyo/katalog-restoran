@@ -85,9 +85,9 @@ module.exports = {
     new ImageminWebpWebpackPlugin({
       config: [
         {
-          test: /\.(jpe?g|png)/,
+          test: /\.(jpe?g)/,
           options: {
-            quality: 50,
+            quality: 80,
           },
         },
       ],
@@ -102,9 +102,6 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/'),
-          // globOptions: {
-          //   ignore: ['**/images/heros/**'],
-          // },
         },
       ],
     }),
