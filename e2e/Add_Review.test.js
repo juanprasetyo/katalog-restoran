@@ -29,6 +29,8 @@ Scenario('Menambahkan review', async ({ I }) => {
 
   I.click('Submit', '#formAddComment');
 
+  I.wait(5);
+
   const newCommentsCount = await I.grabNumberOfVisibleElements('comment-item');
 
   const addedComment = locate('comment-item').first();

@@ -2,7 +2,7 @@
 import * as TestFactories from './helpers/testFactories';
 import FavoriteRestoIdb from '../src/scripts/data/favorite-resto-idb';
 
-describe('Liking a restaurant', () => {
+describe('Menyukai restoran', () => {
   const addLikeButtonContainer = () => {
     document.body.innerHTML = '<div class="button-container"></div>';
   };
@@ -11,19 +11,19 @@ describe('Liking a restaurant', () => {
     addLikeButtonContainer();
   });
 
-  it('should show the like button when restaurant has not been liked before', async () => {
+  it('harus menampilkan tombol batal sukai ketika restoran telah disukai sebelumnya', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     expect(document.querySelector('[aria-label="Tambahkan ke Favorit"]')).toBeTruthy();
   });
 
-  it('should not show the unlike button when restaurant has not been liked before', async () => {
+  it('harus tidak menampilkan tombol sukai ketika restoran telah disukai sebelumnya', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     expect(document.querySelector('[aria-label="Hapus dari Favorit"]')).toBeFalsy();
   });
 
-  it('should be able to like restaurant', async () => {
+  it('harus bisa untuk menyukai restoran', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     document.querySelector('button-like').dispatchEvent(new Event('click'));
@@ -34,7 +34,7 @@ describe('Liking a restaurant', () => {
     await FavoriteRestoIdb.delete(1);
   });
 
-  it('should not add restaurant again when its already liked', async () => {
+  it('harus tidak bisa menambahkan restoran lagi ketika sudah ditambahkan sebelumnya', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     await FavoriteRestoIdb.put({ id: 1 });
@@ -46,7 +46,7 @@ describe('Liking a restaurant', () => {
     await FavoriteRestoIdb.delete(1);
   });
 
-  it('should not add restaurant when it has no id', async () => {
+  it('harus tidak bisa menambahkan restoran ketika tidak punya id', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({});
 
     document.querySelector('button-like').dispatchEvent(new Event('click'));

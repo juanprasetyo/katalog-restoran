@@ -2,7 +2,7 @@
 import * as TestFactories from './helpers/testFactories';
 import FavoriteRestoIdb from '../src/scripts/data/favorite-resto-idb';
 
-describe('Unliking a restaurant', () => {
+describe('Batal sukai restoran', () => {
   const addLikeButtonContainer = () => {
     document.body.innerHTML = '<div class="button-container"></div>';
   };
@@ -16,19 +16,19 @@ describe('Unliking a restaurant', () => {
     await FavoriteRestoIdb.delete(1);
   });
 
-  it('should show the unlike button when restaurant has been liked before', async () => {
+  it('harus menampilkan tombol batal sukai ketika restoran telah disukai sebelumnya', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     expect(document.querySelector('[aria-label="Hapus dari Favorit"]')).toBeTruthy();
   });
 
-  it('should not show the like button when restaurant has been liked before', async () => {
+  it('harus tidak menampilkan tombol sukai ketika restoran telah disukai sebelumnya', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     expect(document.querySelector('[aria-label="Tambahkan ke Favorit"]')).toBeFalsy();
   });
 
-  it('should be able to unlike restaurant', async () => {
+  it('harus bisa untuk membatalkan menyukai restoran', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     document.querySelector('button-unlike').dispatchEvent(new Event('click'));
@@ -37,7 +37,7 @@ describe('Unliking a restaurant', () => {
     expect(restaurant).toEqual([]);
   });
 
-  it('should not throw error when user click unlike widget if the unliked restaurant is not in the list', async () => {
+  it('harus tidak menampilkan error ketika user klik tombol batal sukai jika restoran tidak ada di dalam list', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     await FavoriteRestoIdb.delete(1);
