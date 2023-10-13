@@ -16,6 +16,9 @@
 
     img {
       width: 100%;
+      height: 150px;
+      object-fit: cover;
+      object-position: center;
       border-radius: .75rem;
     }
   }
@@ -116,6 +119,14 @@
 }
 
 @include media-min-width(md) {
+  .card-detail {
+    picture {
+      img {
+        height: 365px;
+      }
+    }
+  }
+
   .card-comment {
     flex-direction: row !important;
 
@@ -139,10 +150,28 @@
 
 @include media-min-width(lg) {
   .card-detail {
+    picture {
+      img {
+        height: 250px;
+      }
+    }
+  }
+
+  .card-detail {
     height: 100%;
 
     picture {
       order: 0;
+    }
+  }
+}
+
+@include media-min-width(xl) {
+  .card-detail {
+    picture {
+      img {
+        height: 350px;
+      }
     }
   }
 }
