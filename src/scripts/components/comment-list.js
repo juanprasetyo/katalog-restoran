@@ -1,14 +1,23 @@
 import './comment-item';
 
 class CommentList extends HTMLElement {
+  connectedCallback() {
+    this.render();
+  }
+
   set comments(comments) {
     this._comments = comments.reverse();
     this.render();
   }
 
+  set noComment(noComment) {
+    this._noComment = noComment;
+    this.render();
+  }
+
   render() {
     this.innerHTML = `
-      <section class="container">
+      <section class="container pb-0">
         <div class="row">
           <div class="col-12">
             <div class="card-detail">
@@ -21,11 +30,26 @@ class CommentList extends HTMLElement {
     `;
 
     const listCommentContainer = this.querySelector('.list-comment');
-    this._comments.forEach((comment) => {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 2; i++) {
       const commentElement = document.createElement('comment-item');
-      commentElement.comment = comment;
       listCommentContainer.appendChild(commentElement);
-    });
+    }
+
+    if (this._comments) {
+      listCommentContainer.innerHTML = '';
+      this._comments.forEach((comment) => {
+        const commentElement = document.createElement('comment-item');
+        listCommentContainer.appendChild(commentElement);
+        commentElement.comment = comment;
+      });
+    }
+
+    if (this._noComment) {
+      listCommentContainer.innerHTML = `
+        <h3 class="text-center" style="width: 100%;">Tidak Ada Komentar</h3>
+      `;
+    }
   }
 }
 

@@ -1,4 +1,17 @@
 class CommentItem extends HTMLElement {
+  constructor() {
+    super();
+    this._comment = {
+      name: '',
+      date: '',
+      review: '',
+    };
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
   set comment(comment) {
     this._comment = comment;
     this.render();
@@ -8,7 +21,7 @@ class CommentItem extends HTMLElement {
     this.classList.add('col-12', 'col-lg-6');
     this.innerHTML = `
       <div class="card-comment row">
-          <div class="card-comment-profile col-2" tabindex="0" aria-label="Profile ${this._comment.name}">
+          <div class="card-comment-profile col-2">
             <i class="bi bi-person-circle fs-1"></i>
           </div>
           <div class="card-comment-body col-10">
@@ -20,6 +33,13 @@ class CommentItem extends HTMLElement {
           </div>
       </div>
     `;
+
+    const cardCommentElement = this.querySelector('.card-comment');
+    cardCommentElement.classList.add('skeleton');
+
+    if (this._comment.name && this._comment.date && this._comment.review) {
+      cardCommentElement.classList.remove('skeleton');
+    }
   }
 }
 

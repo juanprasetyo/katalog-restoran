@@ -150,12 +150,7 @@ $blur: (
       height: 60px;
     }
 
-    h2 {
-      @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
-      height: 36px;
-    }
-
-    h3 {
+    h3.author {
       @include skeleton-bg-animation(linear-gradient(90deg, #ffffff, #999292, #767474));
       height: 28px;
       width: 50%;
