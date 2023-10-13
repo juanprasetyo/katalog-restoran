@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const itActAsFavoriteRestaurantModel = (favoriteRestaurant) => {
-  it('should return restaurant that has been added', async () => {
+  it('harus mengembalikan restoran yang telah ditambahkan', async () => {
     favoriteRestaurant.put({ id: 1 });
     favoriteRestaurant.put({ id: 2 });
 
@@ -9,14 +9,20 @@ const itActAsFavoriteRestaurantModel = (favoriteRestaurant) => {
     expect(await favoriteRestaurant.getDetail(3)).toEqual(undefined);
   });
 
-  it('should refuse a restaurant from being added if it does not have the correct property', async () => {
+  it('harus menolak penambahan restoran jika restoran tersebut tidak memiliki properti yang benar', async () => {
+    favoriteRestaurant.put({ property: 'property' });
+
+    expect(await favoriteRestaurant.getAll([]));
+  });
+
+  it('harus bisa mengembalikan semua restoran yang telah ditambahkan', async () => {
     favoriteRestaurant.put({ id: 1 });
     favoriteRestaurant.put({ id: 2 });
 
     expect(await favoriteRestaurant.getAll()).toEqual([{ id: 1 }, { id: 2 }]);
   });
 
-  it('should remove favorite restaurant', async () => {
+  it('harus bisa menghapus restoran favorit', async () => {
     favoriteRestaurant.put({ id: 1 });
     favoriteRestaurant.put({ id: 2 });
     favoriteRestaurant.put({ id: 3 });
@@ -26,7 +32,7 @@ const itActAsFavoriteRestaurantModel = (favoriteRestaurant) => {
     expect(await favoriteRestaurant.getAll()).toEqual([{ id: 2 }, { id: 3 }]);
   });
 
-  it('should handle request to remove a restaurant event though restaurant has not been added', async () => {
+  it('harus menangani permintaan untuk menghapus restoran meskipun restoran belum ditambahkan ke favorit', async () => {
     favoriteRestaurant.put({ id: 1 });
     favoriteRestaurant.put({ id: 2 });
     favoriteRestaurant.put({ id: 3 });

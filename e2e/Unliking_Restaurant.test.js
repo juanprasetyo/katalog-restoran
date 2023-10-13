@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
 
-Feature('Menyukai Restoran');
+Feature('Batal Sukai Restoran');
 
 Before(({ I }) => {
   I.amOnPage('/#/favorite');
@@ -13,7 +13,7 @@ Scenario('Menampilkan tidak ada restoran yang disukai', ({ I }) => {
   I.see('Tidak Ada Restoran Favorit Anda', 'h2');
 });
 
-Scenario('Menyukai restoran', async ({ I }) => {
+Scenario('Batal sukai restoran', async ({ I }) => {
   I.seeElement('.container.title');
 
   I.waitForElement('h2');
@@ -40,4 +40,15 @@ Scenario('Menyukai restoran', async ({ I }) => {
   const firstLikedRestaurantTitle = await I.grabTextFrom(firstLikedRestaurant.find('h3.title'));
 
   assert.strictEqual(firstRestaurantTitle, firstLikedRestaurantTitle);
+
+  const buttonDetailFirstLikedRestaurant = firstLikedRestaurant.find('a.btn');
+  I.click(buttonDetailFirstLikedRestaurant);
+
+  I.waitForElement('button-unlike');
+  I.seeElement('button-unlike');
+  I.click('button-unlike');
+
+  I.amOnPage('/#/favorite');
+  I.waitForElement('h2');
+  I.see('Tidak Ada Restoran Favorit Anda', 'h2');
 });
