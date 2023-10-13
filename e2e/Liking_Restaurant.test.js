@@ -34,6 +34,8 @@ Scenario('Menyukai restoran', async ({ I }) => {
 
   I.amOnPage('/#/favorite');
 
+  I.dontSee('Tidak Ada Restoran Favorit Anda', 'h2');
+
   I.waitForElement('restaurant-item');
   I.seeElement('restaurant-item');
   const firstLikedRestaurant = locate('restaurant-item').first();

@@ -51,4 +51,6 @@ Scenario('Batal sukai restoran', async ({ I }) => {
   I.amOnPage('/#/favorite');
   I.waitForElement('h2');
   I.see('Tidak Ada Restoran Favorit Anda', 'h2');
+
+  I.dontSeeElement('restaurant-item');
 });
