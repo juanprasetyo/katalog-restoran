@@ -2,7 +2,7 @@ import './comment-item';
 
 class CommentList extends HTMLElement {
   set comments(comments) {
-    this._comments = comments;
+    this._comments = comments.reverse();
     this.render();
   }
 

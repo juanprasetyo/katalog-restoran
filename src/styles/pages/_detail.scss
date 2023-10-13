@@ -63,6 +63,7 @@
 
         .author {
           text-transform: capitalize;
+          text-align: center;
         }
       }
 
@@ -124,6 +125,9 @@
       .comment-create {
         flex-direction: row !important;
         justify-content: space-between !important;
+      }
+      .author {
+        text-align: start !important;
       }
       .comment {
         text-align: start !important;
