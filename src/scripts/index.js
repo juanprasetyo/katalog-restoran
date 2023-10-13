@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import 'regenerator-runtime'; /* for async await transpile */
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../styles/main.scss';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import swRegister from './utils/sw-register';
 import App from './views/app';
 

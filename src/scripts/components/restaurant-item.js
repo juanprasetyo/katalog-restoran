@@ -11,11 +11,12 @@ class RestaurantItem extends HTMLElement {
     this.innerHTML = `
       <article class="card">
         <picture>
-          <source media="(min-width:576px)" srcset="${CONFIG.BASE_IMAGE_URL}small/${this._restaurant.pictureId}">
-          <source media="(min-width:768px)" srcset="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}">
-          <source media="(min-width:992px)" srcset="${CONFIG.BASE_IMAGE_URL}large/${this._restaurant.pictureId}">
-          <img src="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}" alt="Restaurant ${this._restaurant.name}" loading="lazy" tabindex="0">
+          <source media="(max-width:576px)" data-srcset="${CONFIG.BASE_IMAGE_URL}small/${this._restaurant.pictureId}" class="lazyload">
+          <source media="(max-width:768px)" data-srcset="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}" class="lazyload">
+          <source media="(max-width:992px)" data-srcset="${CONFIG.BASE_IMAGE_URL}large/${this._restaurant.pictureId}" class="lazyload">
+          <img data-src="${CONFIG.BASE_IMAGE_URL}medium/${this._restaurant.pictureId}" alt="Restaurant ${this._restaurant.name}" loading="lazy" tabindex="0" class="lazyload">
         </picture>
+        
         <p class="label-city fw-semi-bold" tabindex="0" aria-label="Tempat di kota ${this._restaurant.city}">${this._restaurant.city}</p>
         <div class="card-body">
           <p class="rating fs-6 fw-extra-bold" tabindex="0" aria-label="Rating restaurant ${this._restaurant.rating}">

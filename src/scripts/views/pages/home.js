@@ -5,10 +5,21 @@ const Home = {
   async render() {
     return `
       <section id="hero">
+        <picture>
+          <source media="(max-width: 576px)" type="image/webp" class="lazyload" data-srcset="./images/hero-image_2-sm.webp">
+          <source media="(max-width: 576px)" type="image/jpeg" class="lazyload" data-srcset="./images/hero-image_2-sm.jpg">
+          <source media="(max-width: 768px)" type="image/webp" class="lazyload" data-srcset="./images/hero-image_2-md.webp">
+          <source media="(max-width: 768px)" type="image/jpeg" class="lazyload" data-srcset="./images/hero-image_2-md.jpg">
+          <source media="(max-width: 992px)" type="image/webp" class="lazyload" data-srcset="./images/hero-image_2-lg.webp">
+          <source media="(max-width: 992px)" type="image/jpeg" class="lazyload" data-srcset="./images/hero-image_2-lg.jpg">
+          <source media="(max-width: 1200px)" type="image/webp" class="lazyload" data-srcset="./images/hero-image_2-xl.webp">
+          <source media="(max-width: 1200px)" type="image/jpeg" class="lazyload" data-srcset="./images/hero-image_2-xl.jpg">
+          <img class="lazyload" data-src="./images/heros/hero-image_2.jpg" alt="">
+        </picture>
         <h1 class="fs-3 fs-md-2 fs-lg-1 fw-bold text-center">Jelajahi seluruh restoran terbaik di seluruh Indonesia.</h1>
       </section>
-      <div class="container template-skeleton">
-        <div class="row">
+      <div class="container list-restaurants">
+        <div class="row template-skeleton">
           <div class="col-12 col-md-6 col-lg-4">
             <div id="skeleton" class="card-skeleton"></div>
           </div>
@@ -27,7 +38,7 @@ const Home = {
   },
 
   async afterRender() {
-    const mainElement = document.querySelector('#main');
+    const listRestaurantsContainer = document.querySelector('.list-restaurants');
     const restaurantListElement = document.createElement('restaurant-list');
     const restaurants = await RestaurantSource.list();
 
@@ -35,7 +46,7 @@ const Home = {
       const templateSkeleton = document.querySelector('.template-skeleton');
       templateSkeleton.classList.toggle('hidden');
       restaurantListElement.restaurants = await restaurants;
-      mainElement.appendChild(restaurantListElement);
+      listRestaurantsContainer.appendChild(restaurantListElement);
     }
   },
 };

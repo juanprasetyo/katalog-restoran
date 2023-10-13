@@ -1,10 +1,11 @@
 import UrlParser from '../../routes/url-parser';
 import RestaurantSource from '../../data/restaurant-source';
+import LikeButtonPresenter from '../../utils/like-button-presenter';
+import FavoriteRestoIdb from '../../data/favorite-resto-idb';
 import '../../components/restaurant-desc';
 import '../../components/restaurant-detail';
 import '../../components/comment-list';
 import '../../components/comment-form';
-import '../../components/button-favorite';
 
 const Detail = {
   async render() {
@@ -133,12 +134,18 @@ const Detail = {
     }
 
     const formCommentElement = document.createElement('comment-form');
-    formCommentElement.restoId = restaurant.id;
+    formCommentElement.restoId = await restaurant.id;
     mainElement.appendChild(formCommentElement);
 
-    const buttonFavoriteElement = document.createElement('button-favorite');
-    buttonFavoriteElement.restaurant = await restaurant;
-    mainElement.appendChild(buttonFavoriteElement);
+    const buttonLikeContainer = document.createElement('div');
+    buttonLikeContainer.classList.add('button-container');
+    mainElement.appendChild(buttonLikeContainer);
+
+    await LikeButtonPresenter.init({
+      likeButtonContainer: document.querySelector('.button-container'),
+      favoriteRestaurants: FavoriteRestoIdb,
+      restaurant,
+    });
   },
 };
 
